@@ -6,7 +6,7 @@ namespace CustomFurniture.System.Domain.Common
     public static class Guard
     {
         public static void AgainstEmptyString<TException>(string value, string name = "Value")
-            where TException : BaseDomainException, new()
+            where TException : DomainException, new()
         {
             if (!string.IsNullOrEmpty(value))
             {
@@ -17,7 +17,7 @@ namespace CustomFurniture.System.Domain.Common
         }
 
         public static void ForStringLength<TException>(string value, int minLength, int maxLength, string name = "Value")
-            where TException : BaseDomainException, new()
+            where TException : DomainException, new()
         {
             AgainstEmptyString<TException>(value, name);
 
@@ -30,7 +30,7 @@ namespace CustomFurniture.System.Domain.Common
         }
 
         public static void AgainstOutOfRange<TException>(int number, int min, int max, string name = "Value")
-            where TException : BaseDomainException, new()
+            where TException : DomainException, new()
         {
             if (min <= number && number <= max)
             {
@@ -41,7 +41,7 @@ namespace CustomFurniture.System.Domain.Common
         }
 
         public static void AgainstOutOfRange<TException>(decimal number, decimal min, decimal max, string name = "Value")
-            where TException : BaseDomainException, new()
+            where TException : DomainException, new()
         {
             if (min <= number && number <= max)
             {
@@ -50,9 +50,20 @@ namespace CustomFurniture.System.Domain.Common
 
             ThrowException<TException>($"{name} must be between {min} and {max}.");
         }
-        
+        public static void ForValidUrl<TException>(string url, string name = "Value")
+            where TException : DomainException, new()
+        {
+            if (url.Length <= 2048 &&
+                Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            {
+                return;
+            }
+
+            ThrowException<TException>($"{name} must be a valid URL.");
+        }
+
         public static void Against<TException>(object actualValue, object unexpectedValue, string name = "Value")
-            where TException : BaseDomainException, new()
+            where TException : DomainException, new()
         {
             if (!actualValue.Equals(unexpectedValue))
             {
@@ -63,7 +74,7 @@ namespace CustomFurniture.System.Domain.Common
         }
 
         private static void ThrowException<TException>(string message)
-            where TException : BaseDomainException, new()
+            where TException : DomainException, new()
         {
             var exception = new TException
             {

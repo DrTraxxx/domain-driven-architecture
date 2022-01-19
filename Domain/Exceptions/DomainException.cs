@@ -2,7 +2,7 @@
 {
     using global::System;
 
-    public abstract class BaseDomainException : Exception
+    public abstract class DomainException : Exception
     {
         private string? _message;
 

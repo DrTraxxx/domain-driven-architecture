@@ -4,6 +4,8 @@ using System.Reflection;
 
 namespace CustomFurniture.System.Domain.Common
 {
+
+    //This was workaround for objects to behave like records before the project was migrated to .net5
     public abstract class ValueObject
     {
         private readonly BindingFlags privateBindingFlags = 
