@@ -1,4 +1,4 @@
-﻿namespace CustomFurniture.System.Domain.Models.FurnitureItem
+﻿namespace CustomFurniture.System.Domain.Models.FurnitureItems
 {
     public record Dimensions
     {

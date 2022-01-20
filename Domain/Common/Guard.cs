@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using CustomFurniture.System.Domain.Exceptions;
 
 namespace CustomFurniture.System.Domain.Common
@@ -14,6 +15,17 @@ namespace CustomFurniture.System.Domain.Common
             }
 
             ThrowException<TException>($"{name} cannot be null ot empty.");
+        }
+
+        public static void AgainstEmptyString<TException>(params string[] args)
+            where TException : DomainException, new()
+        {
+            if (!args.Any(string.IsNullOrEmpty))
+            {
+                return;
+            }
+
+            ThrowException<TException>($"Value cannot be null ot empty.");
         }
 
         public static void ForStringLength<TException>(string value, int minLength, int maxLength, string name = "Value")

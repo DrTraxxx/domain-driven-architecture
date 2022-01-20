@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CustomFurniture.System.Domain.Common;
 using CustomFurniture.System.Domain.Exceptions;
 
-namespace CustomFurniture.System.Domain.Models.FurnitureItem
+namespace CustomFurniture.System.Domain.Models.FurnitureItems
 {
     public class FurnitureItem : Entity<int> ,IAggregateRoot 
     {

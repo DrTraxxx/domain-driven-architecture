@@ -1,12 +1,14 @@
 ﻿using CustomFurniture.System.Domain.Common;
 using CustomFurniture.System.Domain.Exceptions;
 
-namespace CustomFurniture.System.Domain.Models.FurnitureItem
+namespace CustomFurniture.System.Domain.Models.FurnitureItems
 {
     public class Category : Entity<int>
     {
         internal Category(string name , string descr)
         {
+            ValidateModel(name,descr);
+
             Name = name;
             Description = descr;
         }
