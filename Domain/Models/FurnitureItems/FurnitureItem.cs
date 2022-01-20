@@ -16,7 +16,7 @@ namespace CustomFurniture.System.Domain.Models.FurnitureItems
             Dimensions dimensions , 
             string imgUrl , 
             decimal price, 
-            bool isAvailabel)
+            bool isAvailable)
         {
             ValidateModel(name, imgUrl, price, category);
 
@@ -25,7 +25,7 @@ namespace CustomFurniture.System.Domain.Models.FurnitureItems
             Name = name;
             ImageUrl = imgUrl;
             Price = price;
-            IsAvailable = isAvailabel;
+            IsAvailable = isAvailable;
 
         }
 
